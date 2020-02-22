@@ -1,0 +1,46 @@
+﻿@model AutoCareInc.Models.Invoice
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Invoice Date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceDate)
+        </dd>
+
+        <dt>
+            Invoice Notes:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceNotes)
+        </dd>
+
+        <dt>
+            Customer:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerFname)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    }
+</div>

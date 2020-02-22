@@ -1,0 +1,38 @@
+﻿@model AutoCareInc.Models.InvoiceItem
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Are you sure you want to delete @Model.InvoiceItemName?</h3>
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceItemPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceItemPrice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    }
+</div>

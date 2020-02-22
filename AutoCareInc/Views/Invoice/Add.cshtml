@@ -1,0 +1,75 @@
+﻿@model AutoCareInc.Models.ViewModels.AddInvoice
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2" for="InvoiceDate">Invoice Date:</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-date="The field InvoiceDate must be a date." data-val-required="The InvoiceDate field is required." id="InvoiceDate" name="InvoiceDate" type="datetime" value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="InvoiceDate" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="InvoiceNotes">Invoice Notes:</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="InvoiceNotes" name="InvoiceNotes" type="text" value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="InvoiceNotes" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="CustomerID">Customer</label>
+        <select id="CustomerID" type="text" name="CustomerID">
+            @{
+
+                foreach (var customer in Model.customers)
+                {
+                    <option value="@customer.CustomerID">@customer.CustomerFname</option>
+
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="InvoiceItemID">Item</label>
+        <select id="InvoiceItemID" type="text" name="InvoiceItemID" multiple>
+            @{
+
+                foreach (var invoiceitem in Model.invoiceItems)
+                {
+                    <option value="@invoiceitem.InvoiceItemID">@invoiceitem.InvoiceItemName</option>
+
+                }
+            }
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

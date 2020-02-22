@@ -1,0 +1,91 @@
+﻿@model AutoCareInc.Models.ViewModels.ShowCustomer
+
+@{
+    ViewBag.Title = "Show";
+}
+<div>
+    <button type="button" class="btn btn-default">@Html.ActionLink("Back to List", "List")</button>
+</div>
+
+<h2>Details for @Model.customer.CustomerFname</h2>
+<div class="flex">
+    <section>
+        <dl class="dl-horizontal">
+            <dt class="form-group">
+                First Name:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.customer.CustomerFname)
+            </dd>
+
+            <dt class="form-group">
+                Last Name:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.customer.CustomerLname)
+            </dd>
+
+            <dt class="form-group">
+                Address:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.customer.CustomerAddress)
+            </dd>
+
+            <dt class="form-group">
+                Email:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.customer.CustomerEmail)
+            </dd>
+
+            <dt>
+                Phone:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.customer.CustomerPhone)
+            </dd>
+
+        </dl>
+
+        <p>
+            <button type="button" class="btn btn-success btn-lg float-left">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.customer.CustomerID })
+            </button>
+
+            <button type="button" class="btn btn-success btn-lg float-right">@Html.ActionLink("Delete", "Delete", new { id = Model.customer.CustomerID })</button>
+        </p>
+    </section>
+    <section>
+        <h2>Invoices For @Model.customer.CustomerFname:</h2>
+
+        <table class="table table-bordered tbl">
+            <thead>
+                <tr>
+                    <th>Invoice Number</th>
+                    <th>Invoice Date</th>
+                    <th>Invoice Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+
+                    foreach (var invoice in @Model.invoices)
+                    {
+                        <tr>
+                            <td>@invoice.InvoiceID</td>
+                            <td>@invoice.InvoiceDate</td>
+                            <td>@invoice.InvoiceNotes</td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

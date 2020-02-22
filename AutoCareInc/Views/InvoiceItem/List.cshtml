@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AutoCareInc.Models.InvoiceItem>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Items</h2>
+
+<p>
+    @Html.ActionLink("Add New", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Price($CAD)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var invoiceItem in Model) {
+    <tr>
+        <td>
+            <a href="/InvoiceItem/Show/@invoiceItem.InvoiceItemID">@Html.DisplayFor(modelItem => invoiceItem.InvoiceItemName)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoiceItem.InvoiceItemPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=invoiceItem.InvoiceItemID }) |
+            @Html.ActionLink("Show", "Show", new { id=invoiceItem.InvoiceItemID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=invoiceItem.InvoiceItemID })
+        </td>
+    </tr>
+}
+
+</table>

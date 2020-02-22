@@ -1,0 +1,86 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<AutoCareInc.Models.Customer>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Customers</h2>
+
+<p>
+    <button type="button" class="btn btn-default">@Html.ActionLink("Add New", "Add")</button>
+</p>
+@*I am trying to build a search functionality. I need a search input field, the search options and serch button*@
+@*I have taken help from a video. https://www.youtube.com/watch?v=Slw-gs2vcWo*@ 
+@using (Html.BeginForm("List","Customer",FormMethod.Get))
+{
+    <strong>Search By:</strong>
+    <div>
+        @Html.RadioButton("searchBy", "First Name", true)<text>First Name</text>
+        @Html.RadioButton("searchBy", "Last Name")<text>Last Name</text>
+        <div>
+            @Html.TextBox("search")<input type="submit" value="Search" />
+        </div>
+    </div>
+}
+
+<table class="table table-bordered tbl">
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            E-mail
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>Actions</th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td>No records match the search criteria.</td>
+        </tr>
+    }
+    else
+    {
+    foreach (var customer in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Customer/Show/@customer.CustomerID">@Html.DisplayFor(Model => customer.CustomerFname)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(Model => customer.CustomerLname)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => customer.CustomerAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => customer.CustomerEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => customer.CustomerPhone)
+            </td>
+            <td>
+                <button type="button" class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = customer.CustomerID })</button>
+                <button type="button" class="btn btn-default">
+                    @Html.ActionLink("Show", "Show", new { id = customer.CustomerID })
+                </button>
+                <button type="button" class="btn btn-default"> @Html.ActionLink("Delete", "Delete", new { id = customer.CustomerID })</button>
+            </td>
+        </tr>
+    }
+    }
+</table>
+@*Paging*@
+@Html.PagedListPager(Model,page=> Url.Action("List", new {page, searchBy= Request.QueryString["searchBy"], search =Request.QueryString["search"] }),
+    new PagedListRenderOptions() { Display= PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation=true, DisplayItemSliceAndTotal=true})

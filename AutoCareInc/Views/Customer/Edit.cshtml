@@ -1,0 +1,73 @@
+﻿@model AutoCareInc.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Profile of @Model.CustomerFname</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CustomerID)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="CustomerFname">First Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="CustomerFname" name="CustomerFname" type="text" value="@Model.CustomerFname" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="CustomerFname" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="CustomerLname">Last Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="CustomerLname" name="CustomerLname" type="text" value="@Model.CustomerLname" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="CustomerLname" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="CustomerAddress">Address</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="CustomerAddress" name="CustomerAddress" type="text" value="@Model.CustomerAddress" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="CustomerAddress" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="CustomerEmail">Email</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="CustomerEmail" name="CustomerEmail" type="text" value="@Model.CustomerEmail" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="CustomerEmail" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="CustomerPhone">Phone</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="CustomerPhone" name="CustomerPhone" type="text" value="123456" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="CustomerPhone" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

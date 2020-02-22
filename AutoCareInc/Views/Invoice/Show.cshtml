@@ -1,0 +1,42 @@
+﻿@model AutoCareInc.Models.Invoice
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show</h2>
+
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Invoice Date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceDate)
+        </dd>
+
+        <dt>
+            Invoice Notes:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceNotes)
+        </dd>
+
+        <dt>
+            Customer:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerFname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Update", new { id = Model.InvoiceID }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

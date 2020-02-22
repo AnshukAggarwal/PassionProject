@@ -1,0 +1,48 @@
+﻿@model AutoCareInc.Models.InvoiceItem
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add Invoice Item</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="InvoiceItemName">Item Name:</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="InvoiceItemName" name="InvoiceItemName" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="InvoiceItemName" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="InvoiceItemPrice">Item Price:</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field InvoiceItemPrice must be a number." data-val-required="The InvoiceItemPrice field is required." id="InvoiceItemPrice" name="InvoiceItemPrice" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="InvoiceItemPrice" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
